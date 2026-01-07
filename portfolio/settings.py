@@ -26,8 +26,12 @@ SECRET_KEY = 'django-insecure-!9k^vqo!0c9oye%m2%^8th)pvtk0&dhr-yoew$++=we4v#_0(k
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
 
+ALLOWED_HOSTS = [
+    "django-portfolio-iqcm.onrender.com",
+    "localhost",
+    "127.0.0.1"
+]
 
 # Application definition
 
@@ -41,8 +45,19 @@ INSTALLED_APPS = [
     'core',
 ]
 
+# MIDDLEWARE = [
+    # 'django.middleware.security.SecurityMiddleware',
+    # 'django.contrib.sessions.middleware.SessionMiddleware',
+    # 'django.middleware.common.CommonMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.contrib.auth.middleware.AuthenticationMiddleware',
+    # 'django.contrib.messages.middleware.MessageMiddleware',
+    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+# ]
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # 👈 ADD THIS
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -50,6 +65,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 ROOT_URLCONF = 'portfolio.urls'
@@ -140,3 +156,7 @@ EMAIL_HOST_USER = "rangrezzuveash@gmail.com"
 EMAIL_HOST_PASSWORD = "xfiddjznarefgkdr"
 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://django-portfolio-iqcm.onrender.com"
+]
