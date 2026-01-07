@@ -1,0 +1,94 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block title %}Contact | Uveash{% endblock %}
+
+{% block content %}
+
+<!-- ===== CONTACT PAGE CSS (ONLY FOR THIS PAGE) ===== -->
+<style>
+  /* Glass input fields */
+  .input-glass {
+    width: 100%;
+    padding: 16px 24px;
+    border-radius: 14px;
+    background: rgba(15, 15, 15, 0.85);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #ffffff;
+    outline: none;
+    transition: all 0.3s ease;
+  }
+
+  .input-glass::placeholder {
+    color: #94a3b8;
+  }
+
+  .input-glass:focus {
+    border-color: #22d3ee;
+    box-shadow: 0 0 25px rgba(34, 211, 238, 0.45);
+  }
+
+  /* CTA button (Utkarsh-style) */
+  .cta-btn {
+    display: inline-block;
+    padding: 14px 42px;
+    border-radius: 9999px;
+    background: #22d3ee;
+    color: #000;
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 15px 35px rgba(34, 211, 238, 0.45);
+    text-decoration: none;
+  }
+
+  .cta-btn:hover {
+    background: #67e8f9;
+    transform: translateY(-3px);
+    box-shadow: 0 25px 55px rgba(34, 211, 238, 0.6);
+  }
+</style>
+
+<!-- ===== CONTACT SECTION ===== -->
+<section class="min-h-screen flex items-center justify-center px-6 pt-40">
+
+    <div class="max-w-3xl w-full text-center">
+        <h1 class="text-6xl font-extrabold mb-6">
+            Connect with <span class="text-cyan-400">me.</span>
+        </h1>
+
+        <p class="text-slate-400 max-w-2xl mx-auto mb-12">
+            Let's build, innovate, and grow together.
+        </p>
+
+        <form method="POST" class="space-y-6">
+            {% csrf_token %}
+
+            <input
+                type="email"
+                name="email"
+                required
+                placeholder="Your email address"
+                class="input-glass">
+
+            <textarea
+                rows="6"
+                name="message"
+                required
+                placeholder="Your message"
+                class="input-glass"></textarea>
+
+            <button type="submit" class="cta-btn mx-auto block">
+                Send Message
+            </button>
+            {% if success %}
+            <p class="text-green-400 mb-6">
+                Message sent successfully! I’ll get back to you soon.
+            </p>
+            {% endif %}
+        </form>
+
+    </div>
+
+</section>
+{% endblock %}

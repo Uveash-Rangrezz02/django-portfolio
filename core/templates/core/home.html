@@ -1,0 +1,626 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Uveash | Python Django Developer</title>
+
+        <!-- Tailwind CSS -->
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+        <!-- SERVICE CARD STYLE -->
+        <style>
+        .service-card {
+            background: #000;
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            border-color: #ffffff;
+            box-shadow: 0 0 25px rgba(255,255,255,0.25);
+        }
+    </style>
+
+        <!-- CTA STYLES -->
+        <style>
+        .cta-glass {
+            background: linear-gradient(
+                120deg,
+                rgba(255, 255, 255, 0.04),
+                rgba(255, 255, 255, 0.02)
+            );
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            box-shadow: inset 0 0 120px rgba(255, 255, 255, 0.05);
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 14px 42px;
+            border-radius: 9999px;
+            background: #22d3ee;
+            color: #000;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 15px 35px rgba(34, 211, 238, 0.45);
+            text-decoration: none;
+        }
+
+        .cta-btn:hover {
+            background: #67e8f9;
+            transform: translateY(-3px);
+            box-shadow: 0 25px 55px rgba(34, 211, 238, 0.6);
+        }
+    </style>
+    </head>
+
+    <body class="bg-slate-900 text-white">
+
+        <!-- FLOATING STICKY NAVBAR -->
+        <nav id="navbar"
+            class="fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-300">
+            <div class="flex items-center gap-14 px-10 py-4
+        bg-black/80 backdrop-blur
+        rounded-full shadow-xl">
+
+                <!-- LOGO / HOME -->
+                <a href="#home" class="flex items-center gap-3 group">
+                    <img src="{% static 'image/profile.jpeg' %}"
+                        class="w-11 h-11 rounded-full object-cover
+                 group-hover:ring-2 group-hover:ring-cyan-400 transition">
+
+                    <span class="text-xl font-semibold text-white
+                 group-hover:text-cyan-400 transition">
+                        Uveash
+                    </span>
+                </a>
+
+                <!-- NAV LINKS -->
+                <ul class="flex gap-10 text-lg font-semibold text-slate-300">
+                    <li>
+                        <a href="#about" class="hover:text-cyan-400 transition">
+                            About
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#projects"
+                            class="hover:text-cyan-400 transition">
+                            Projects
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'contact' %}"
+                            class="hover:text-cyan-400 transition">
+                            Contact
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- ⬇️ SCROLL JS (BODY END ME) -->
+        <script>
+    const navbar = document.getElementById("navbar");
+
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+            navbar.classList.add("bg-black/80", "shadow-2xl", "scale-95");
+        } else {
+            navbar.classList.remove("bg-black/80", "shadow-2xl", "scale-95");
+        }
+    });
+</script>
+
+        <!-- HERO SECTION -->
+        <!-- HERO SECTION -->
+        <section id="home"
+            class="min-h-screen flex items-center bg-black px-10">
+            <div
+                class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+
+                <!-- LEFT TEXT -->
+                <div>
+                    <h1
+                        class="text-5xl md:text-6xl font-extrabold leading-tight mb-6">
+                        I'm a <br>
+                        <span class="text-cyan-400">Python Django
+                            Developer.</span>
+                    </h1>
+
+                    <p class="text-slate-400 text-lg max-w-xl mb-8">
+                        Meet Uveash Rangrezz <span
+                            class="text-white font-semibold"></span>, a
+                        passionate
+                        <span class="text-cyan-400">Python Django
+                            Developer</span> focused on building secure,
+                        scalable, and high-performance web applications.
+                        With a
+                        strong foundation in backend development, REST APIs,
+                        and
+                        database design, he works on automation systems and
+                        production-ready platforms, delivering clean,
+                        reliable,
+                        and user-focused solutions.
+                    </p>
+
+                    <div class="flex gap-6">
+                        <!-- <a href="#contact" -->
+                        <!-- class="bg-cyan-500 text-black px-8 py-3 rounded-full font-semibold hover:bg-cyan-400 transition"> -->
+                        <!-- Contact Me -->
+                        <!-- </a> -->
+
+                        <a href="{% static 'resume/Uveash_Resume.pdf' %}"
+                            target="_blank"
+                            class="inline-block
+          bg-cyan-400 text-black
+          px-6 py-3 rounded-full
+          font-semibold
+          hover:bg-white hover:text-black
+          transition duration-300">
+                            Resume
+                        </a>
+
+                    </div>
+                </div>
+
+                <!-- RIGHT IMAGE -->
+                <div class="flex justify-center">
+                    <img src="{% static 'image/profile.jpeg' %}"
+                        alt="Uveash"
+                        class="w-96 h-96
+                md:w-[420px] md:h-[420px]
+                lg:w-[480px] lg:h-[480px]
+                object-cover
+                 scale-95
+                rounded-3xl
+                shadow-2xl">
+                </div>
+
+            </section>
+
+            <!-- WORK EXPERIENCE SECTION -->
+            <!-- WORK EXPERIENCE -->
+            <section id="experience" class="py-32 bg-black">
+                <div class="max-w-6xl mx-auto px-10">
+
+                    <h2
+                        class="text-4xl font-bold mb-12 text-white text-left">
+                        Work Experience
+                    </h2>
+
+                    <div class="space-y-12">
+                        {% for exp in experiences %}
+                        <div
+                            class="flex flex-col md:flex-row gap-8 bg-slate-900/70 p-8 rounded-2xl border border-slate-800">
+
+                            <!-- LEFT -->
+                            <div class="min-w-[140px]">
+                                <h3
+                                    class="text-lg font-semibold text-cyan-400">
+                                    {{ exp.company }}
+                                </h3>
+                                <p class="text-sm text-slate-400">
+                                    {{ exp.start_date }} – {{ exp.end_date
+                                    }}
+                                </p>
+                                <p class="text-sm text-slate-500">
+                                    {{ exp.location }}
+                                </p>
+                            </div>
+
+                            <!-- RIGHT -->
+                            <div class="text-slate-300 whitespace-pre-line">
+                                {{ exp.description }}
+                            </div>
+
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                </div>
+            </section>
+            <!-- about -->
+            <section id="about" class="py-32 bg-black">
+                <div
+                    class="max-w-6xl mx-auto px-10 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+
+                    <div>
+                        <h2
+                            class="text-4xl font-bold mb-6 text-white text-center md:text-left">
+                            About
+                        </h2>
+
+                        <p class="text-slate-400 text-lg mb-8">
+                            This website is a personal portfolio created to
+                            showcase my journey as a Python Django Developer. It
+                            features my projects, technical skills, and
+                            professional experience, all presented through a
+                            clean and modern interface. The platform is designed
+                            with a strong focus on backend architecture,
+                            performance, and usability, reflecting the way I
+                            build real-world applications. It also serves as a
+                            place to connect, collaborate, and discuss new ideas
+                            or opportunities.
+
+                        </p>
+
+                        <div class="flex gap-12">
+                            <div class="text-center">
+                                <h3
+                                    class="text-3xl font-bold text-cyan-400">
+                                    {{ about.experience|default:0 }}+
+                                </h3>
+                                <p class="text-slate-400">Years
+                                    Experience</p>
+                            </div>
+
+                            <div class="text-center">
+                                <h3
+                                    class="text-3xl font-bold text-cyan-400">
+                                    {{ about.projects|default:0 }}+
+                                </h3>
+                                <p class="text-slate-400">Projects
+                                    Completed</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-[#0f172a] rounded-2xl p-10">
+                        <h3
+                            class="text-2xl font-semibold mb-4 text-white">What
+                            I
+                            Do</h3>
+                        <ul class="space-y-3 text-slate-400">
+                            <li>✔ Backend Development with Django</li>
+                            <li>✔ REST API Development</li>
+                            <li>✔ Database Design</li>
+                            <li>✔ Clean & Scalable Code</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- PROJECTS SECTION -->
+            <!-- PROJECTS SECTION -->
+            <section id="projects" class="py-32 bg-black">
+                <div class="max-w-7xl mx-auto px-10">
+
+                    <!-- HEADING -->
+                    <h2
+                        class="text-4xl font-bold mb-16 text-white text-left">
+                        <span class="text-cyan-400"></span>Projects
+                    </h2>
+
+                    <!-- PROJECT GRID -->
+                    <div
+                        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 place-items-center">
+
+                        {% if projects %}
+                        {% for project in projects %}
+                        <div
+                            class="bg-[#0f172a] rounded-2xl overflow-hidden w-full max-w-sm
+               hover:-translate-y-2 hover:shadow-2xl transition duration-300">
+
+                            <!-- IMAGE -->
+                            <img src="{{ project.image.url }}"
+                                alt="{{ project.title }}"
+                                class="h-48 w-full object-cover">
+
+                            <!-- CONTENT -->
+                            <div class="p-6 text-left">
+                                <h3
+                                    class="text-2xl font-bold mb-3 text-white">
+                                    {{ project.title }}
+                                </h3>
+
+                                <!-- <p class="text-slate-400 text-sm mb-4"> -->
+                                <!-- {{ -->
+                                <!-- project.description|default:"No description available"|truncatewords:18 -->
+                                <!-- }} -->
+                                <!-- </p> -->
+
+                                <p class="text-xs text-cyan-400 mb-4">
+                                    {{ project.tech_stack }}
+                                </p>
+
+                                <div class="flex gap-6 text-sm">
+                                    {% if project.github_link %}
+                                    <a href="{{ project.github_link }}"
+                                        target="_blank"
+                                        class="text-cyan-400 hover:underline">
+                                        GitHub
+                                    </a>
+                                    {% endif %}
+
+                                    {% if project.live_link %}
+                                    <a href="{{ project.live_link }}"
+                                        target="_blank"
+                                        class="text-cyan-400 hover:underline">
+                                        Live
+                                    </a>
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                        <p class="text-slate-400 text-center col-span-3">
+                            No projects added yet.
+                        </p>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- SKILLS SECTION -->
+            <!-- SKILLS SECTION -->
+            <section id="skills" class="py-32 bg-black">
+                <div class="max-w-7xl mx-auto px-10">
+
+                    <!-- HEADING -->
+                    <h2
+                        class="text-4xl font-bold mb-4 text-white text-left">
+                        Skills
+                    </h2>
+                    <p class="text-slate-400 mb-16 text-left">
+                        Ideation to Execution
+                    </p>
+
+                    <!-- GRID -->
+                    <div
+                        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                        {% for skill in skills %}
+                        <div
+                            class="skill-card bg-[#0f0f0f] rounded-2xl p-8
+                       border border-transparent
+                       transition-all duration-300
+                       hover:border-white hover:shadow-[0_0_25px_rgba(255,255,255,0.6)]">
+
+                            <!-- ICON -->
+                            <div class="text-cyan-400 mb-4 text-3xl">
+
+                            </div>
+
+                            <!-- NAME -->
+                            <h3 class="text-white text-xl font-semibold">
+                                {{ skill.name }}
+                            </h3>
+
+                        </div>
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- SERVICES / BLOCK SKILLS SECTION -->
+            <section id="services" class="py-32 bg-black">
+                <div class="max-w-7xl mx-auto px-10">
+
+                    <!-- HEADING -->
+                    <h2
+                        class="text-4xl font-bold text-white text-left mb-4">
+                        Need more info? <br><span class="text-cyan-400">I
+                            got
+                            you.</span>
+                    </h2>
+
+                    <p class="text-slate-400 mb-16 max-w-2xl text-left">
+                        Here are some of the services I offer. If you have
+                        any
+                        questions, <br>feel free to reach out.
+                    </p>
+
+                    <!-- GRID -->
+                    <div
+                        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+
+                        <!-- CARD -->
+                        <div class="service-card">
+                            <h3
+                                class="text-xl font-semibold text-white mb-3">
+                                Frontend Development
+                            </h3>
+                            <p class="text-slate-400">
+                                Creating modern, fast and user-friendly
+                                interfaces
+                                with clean UI.
+                            </p>
+                        </div>
+
+                        <div class="service-card">
+                            <h3
+                                class="text-xl font-semibold text-white mb-3">
+                                UX Design
+                            </h3>
+                            <p class="text-slate-400">
+                                Designing intuitive experiences focused on
+                                usability
+                                and clarity.
+                            </p>
+                        </div>
+
+                        <div class="service-card">
+                            <h3
+                                class="text-xl font-semibold text-white mb-3">
+                                SEO Optimization
+                            </h3>
+                            <p class="text-slate-400">
+                                Improving website visibility and organic
+                                search
+                                ranking.
+                            </p>
+                        </div>
+
+                        <div class="service-card">
+                            <h3
+                                class="text-xl font-semibold text-white mb-3">
+                                Responsive Design
+                            </h3>
+                            <p class="text-slate-400">
+                                Pixel-perfect layouts that adapt beautifully
+                                on
+                                all
+                                screens.
+                            </p>
+                        </div>
+
+                        <div class="service-card">
+                            <h3
+                                class="text-xl font-semibold text-white mb-3">
+                                Backend Development
+                            </h3>
+                            <p class="text-slate-400">
+                                Secure and scalable backend systems using
+                                Django.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- CONTACT SECTION -->
+            <!-- <section id="contact" class="py-32 bg-black"> -->
+            <!-- <div class="max-w-4xl mx-auto px-6 text-center"> -->
+
+            <!-- HEADING -->
+            <!-- <h2 -->
+            <!-- class="text-4xl font-bold mb-12 text-white"> -->
+            <!-- <span class="text-cyan-400"></span> -->
+            <!-- Contact -->
+            <!-- </h2> -->
+
+            <!-- <form method="POST" -->
+            <!-- class="space-y-6 max-w-xl mx-auto"> -->
+            <!-- {% csrf_token %} -->
+
+            <!-- <input -->
+            <!-- type="text" -->
+            <!-- name="name" -->
+            <!-- placeholder="Your Name" -->
+            <!-- required -->
+            <!-- class="w-full px-4 py-3 rounded-lg bg-[#0f172a] text-white outline-none focus:ring-2 focus:ring-cyan-400"> -->
+
+            <!-- <input -->
+            <!-- type="email" -->
+            <!-- name="email" -->
+            <!-- placeholder="Your Email" -->
+            <!-- required -->
+            <!-- class="w-full px-4 py-3 rounded-lg bg-[#0f172a] text-white outline-none focus:ring-2 focus:ring-cyan-400"> -->
+
+            <!-- <textarea -->
+            <!-- name="message" -->
+            <!-- rows="5" -->
+            <!-- placeholder="Your Message" -->
+            <!-- required -->
+            <!-- class="w-full px-4 py-3 rounded-lg bg-[#0f172a] text-white outline-none focus:ring-2 focus:ring-cyan-400"></textarea> -->
+
+            <!-- <button -->
+            <!-- type="submit" -->
+            <!-- class="bg-cyan-500 text-black px-10 py-3 rounded-full text-lg font-semibold -->
+            <!-- hover:bg-cyan-400 transition"> -->
+            <!-- Send Message -->
+            <!-- </button> -->
+            <!-- </form> -->
+
+            <!-- </div> -->
+            <!-- </section> -->
+            <!-- CTA SECTION -->
+            <section class="py-32 bg-black">
+                <div
+                    class="max-w-6xl mx-auto px-6">
+                    <div
+                        class="cta-glass rounded-3xl py-24 px-10 text-center">
+
+                        <h2 class="text-5xl font-bold text-white mb-4">
+                            Let's work <span
+                                class="text-cyan-400">together.</span>
+                        </h2>
+
+                        <p
+                            class="text-slate-400 text-lg mb-10 max-w-2xl mx-auto">
+                            I'm currently available for freelance work and
+                            open
+                            to
+                            discussing new projects.
+                        </p>
+
+                        <a href="{% url 'contact' %}"
+                            class="cta-btn">
+                            Get in touch
+                        </a>
+
+                    </div>
+                </div>
+            </section>
+
+        </a>
+        <!-- FOOTER -->
+        <!-- FOOTER -->
+        <footer class="bg-black py-32">
+            <div class="max-w-6xl mx-auto px-6 text-center">
+
+                <!-- PROFILE -->
+                <div class="flex justify-center items-center gap-4 mb-10">
+                    <img src="{% static 'image/profile.jpeg' %}"
+                        class="w-10 h-10 rounded-full object-cover">
+                    <h3 class="text-lg font-semibold text-white">
+                        Uveash Rangrezz
+                    </h3>
+                </div>
+
+                <!-- LINKS -->
+                <ul
+                    class="flex justify-center gap-10 text-slate-400 text-base mb-10">
+                    <li><a href="#home"
+                            class="hover:text-cyan-400 transition">Home</a></li>
+                    <li><a href="#about"
+                            class="hover:text-cyan-400 transition">About</a></li>
+                    <li><a href="#projects"
+                            class="hover:text-cyan-400 transition">Projects</a></li>
+                    <li><a href="{% url 'contact' %}"
+                            class="hover:text-cyan-400 transition">Contact</a></li>
+                </ul>
+
+                <!-- SOCIAL -->
+                <div class="flex justify-center gap-8">
+                    <!-- LinkedIn -->
+                    <a
+                        href="https://www.linkedin.com/in/uveash-rangrezz-20601a253/"
+                        class="group">
+                        <svg
+                            class="w-5 h-5 fill-slate-400 group-hover:fill-cyan-400 transition"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M4.98 3.5a2.48 2.48 0 110 4.96 2.48 2.48 0 010-4.96zM3 8.98h3.96V21H3V8.98zM9.5 8.98h3.79v1.64h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.09V21h-3.96v-5.3c0-1.26-.02-2.88-1.76-2.88-1.77 0-2.04 1.38-2.04 2.79V21H9.5V8.98z" />
+                        </svg>
+                    </a>
+
+                    <!-- GitHub -->
+                    <a href="https://github.com/Uveash-Rangrezz02"
+                        class="group">
+                        <svg
+                            class="w-5 h-5 fill-slate-400 group-hover:fill-cyan-400 transition"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M12 2C6.48 2 2 6.58 2 12.26c0 4.54 2.87 8.39 6.84 9.75.5.1.68-.22.68-.48v-1.7c-2.78.62-3.37-1.37-3.37-1.37-.45-1.17-1.11-1.48-1.11-1.48-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.9 1.56 2.36 1.11 2.94.85.09-.67.35-1.11.63-1.36-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.04 1.03-2.76-.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.05a9.27 9.27 0 015 0c1.9-1.32 2.74-1.05 2.74-1.05.56 1.41.21 2.45.1 2.71.64.72 1.02 1.64 1.02 2.76 0 3.93-2.35 4.79-4.59 5.05.36.32.68.95.68 1.92v2.85c0 .27.18.59.69.48A10.01 10.01 0 0022 12.26C22 6.58 17.52 2 12 2z" />
+                        </svg>
+                    </a>
+                </div>
+
+            </div>
+        </footer>
+
+    </body>
+</html>
